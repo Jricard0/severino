@@ -6,7 +6,7 @@ name: .NET
 on:
   push:
     branches:
-      - release/v*
+      - release/*
   workflow_dispatch:
     
 
