@@ -1,0 +1,39 @@
+# This workflow will build a .NET project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+
+name: .NET
+
+on:
+  push:
+    branches:
+      - release/v*
+  workflow_dispatch:
+    
+
+jobs:
+  build:
+    env:
+      PACKAGE_VERSION: $(echo $GITHUB_REF_NAME | cut -d '/' -f2)
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 6.0.x
+    - name: Restore dependencies
+      run: dotnet restore
+      working-directory: Severino/
+    - name: Build
+      run: dotnet build --no-restore
+      working-directory: Severino/
+    - name: Test
+      run: dotnet test --verbosity normal
+      working-directory: UnitTests/
+    - name: Generate package
+      run: dotnet pack -p:PackageVersion=${{ env.PACKAGE_VERSION }}
+      working-directory: Severino/
+    - name: Publish package
+      run: dotnet nuget push bin/Debug/Severino.${{ env.PACKAGE_VERSION }}.nupkg --api-key ${{ secrets.NUGET_TOKEN }} --source nuget.org
+      working-directory: Severino/

@@ -1,0 +1,43 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Version>1.0.3</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Attributes\" />
+    <None Remove="Microsoft.AspNetCore.Mvc.Core" />
+    <None Remove="Microsoft.AspNetCore.Authorization" />
+    <None Remove="Microsoft.AspNetCore.Mvc.Formatters.Json" />
+    <None Remove="Middlewares\" />
+    <None Remove="RestSharp" />
+    <None Remove="Helpers\" />
+    <None Remove="System.IdentityModel.Tokens.Jwt" />
+    <None Remove="Clients\" />
+    <None Remove="Helpers\Mail\" />
+    <None Remove="Helpers\Password\" />
+    <None Remove="BCrypt.Net-Next" />
+    <None Remove="Validators\" />
+    <None Remove="Validators\Env\Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Attributes\" />
+    <Folder Include="Middlewares\" />
+    <Folder Include="Helpers\" />
+    <Folder Include="Clients\" />
+    <Folder Include="Helpers\Mail\" />
+    <Folder Include="Helpers\Password\" />
+    <Folder Include="Validators\" />
+    <Folder Include="Validators\Env\Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Authorization" Version="7.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Formatters.Json" Version="2.2.0" />
+    <PackageReference Include="RestSharp" Version="108.0.3" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.25.1" />
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+  </ItemGroup>
+</Project>
